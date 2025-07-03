@@ -23,6 +23,7 @@ sed -i '2i src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds
 #sed -i '3i src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2' feeds.conf.default
 sed -i '3i src-git openclash https://github.com/vernesong/OpenClash' feeds.conf.default
 #sed -i '4i src-git themes https://github.com/ffff3333/openwrt_themes' feeds.conf.default
+sed -i '4i src-git themes https://github.com/flrz/openwrt-themes' feeds.conf.default
 #echo 'src-git adguardhome https://github.com/flrz/adguardhome' >>feeds.conf.default
 #sed -i '5i src-git argon https://github.com/jerrykuku/luci-theme-argon' feeds.conf.default
 #sed -i '1i src-git jerrykuku https://github.com/jerrykuku/luci-app-argon-config' feeds.conf.default
