@@ -16,7 +16,8 @@
 # Add a feed source
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
-sed -i '1i src-git flrz https://github.com/flrz/passwall_packages' feeds.conf.default
+#sed -i '1i src-git flrz https://github.com/flrz/passwall_packages' feeds.conf.default
+sed -i '1i src-git passwall_packages https://github.com/ffff3333/packages_updated' feeds.conf.default
 #sed -i '1i src-git xiaorouji https://github.com/xiaorouji/openwrt-passwall-packages' feeds.conf.default
 #sed -i '1i src-git passwall_packages https://github.com/ffff3333/packages' feeds.conf.default
 sed -i '2i src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
