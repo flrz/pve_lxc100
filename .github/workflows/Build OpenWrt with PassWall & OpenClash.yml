@@ -1,14 +1,89 @@
-#
-# https://github.com/P3TERX/Actions-OpenWrt
-#
-# File: .github/workflows/openwrt-bulder.yml
-# Description: Build OpenWrt using GitHub Actions
-#
-# Copyright (c) 2019-2024 P3TERX <https://p3terx.com>
-#
-# This is free software, licensed under the MIT License.
-# See /LICENSE for more information.
-#
+name: Build OpenWrt with PassWall & OpenClash
+
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '0 0 * * *' 
+
+env:
+  REPO_URL: https://github.com/openwrt/openwrt.git
+  REPO_BRANCH: openwrt-24.10
+  FEEDS_CONF: feeds.conf.default
+  #DIY_PAGES_URL: https://github.com/coolsnowwolf/lede # 或者你也可以直接用官方 OpenWrt
+  DIY_PAGES_BRANCH: master
+  CONFIG_FILE: .config
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Prepare build environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo apt update
+        sudo apt install -y build-essential diffutils gawk gcc-multilib g++-multilib git libncurses5-dev libssl-dev rsync unzip wget python3 python3-distutils file zlib1g-dev
+
+    - name: Clone OpenWrt source
+      run: |
+        git clone $REPO_URL -b $REPO_BRANCH openwrt
+        cd openwrt
+
+    - name: Add custom feeds
+      run: |
+        cd openwrt
+        # Add PassWall feeds
+        echo "src-git passwall https://github.com/xiaorouji/openwrt-passwall.git;main" >> $FEEDS_CONF
+        echo "src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages.git;main" >> $FEEDS_CONF
+        # Add OpenClash feed
+        echo "src-git openclash https://github.com/vernesong/OpenClash.git;dev" >> $FEEDS_CONF
+
+    - name: Update feeds
+      run: |
+        cd openwrt
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+
+    - name: Load custom .config
+      run: |
+        cd openwrt
+        # 如果你有一个预先准备好的 .config 文件在你的仓库根目录，这里复制过来
+        # 确保你的 .config 文件是为你的目标设备和 OpenWrt 版本生成的
+        cp ../${{ env.CONFIG_FILE }} ./.config
+
+        # 确保 PassWall 和 OpenClash 被选中，并处理 dnsmasq 冲突
+        # 这里只是示例，实际操作可能需要更复杂的脚本来修改 .config 文件
+        # 如果你的 .config 已经包含了正确的选择，这些行可以省略或调整
+        sed -i 's/CONFIG_PACKAGE_dnsmasq=y/# CONFIG_PACKAGE_dnsmasq is not set/g' ./.config
+        sed -i 's/# CONFIG_PACKAGE_dnsmasq-full is not set/CONFIG_PACKAGE_dnsmasq-full=y/g' ./.config
+        sed -i 's/# CONFIG_PACKAGE_luci-app-passwall is not set/CONFIG_PACKAGE_luci-app-passwall=y/g' ./.config
+        sed -i 's/# CONFIG_PACKAGE_luci-app-openclash is not set/CONFIG_PACKAGE_luci-app-openclash=y/g' ./.config
+        
+        # 再次执行 make defconfig 以应用更改并解析依赖（重要！）
+        # 有时需要这一步来确保依赖被正确拉入
+        make defconfig
+
+    - name: Download packages
+      run: |
+        cd openwrt
+        make download -j$(nproc) || make download -j1 # 如果多线程下载失败，尝试单线程
+
+    - name: Compile OpenWrt
+      run: |
+        cd openwrt
+        echo "::group::Compiling firmware"
+        make -j$(nproc) V=s
+        echo "::endgroup::"
+
+    - name: Upload firmware
+      uses: actions/upload-artifact@v4
+      with:
+        name: OpenWrt_Firmware
+        path: openwrt/bin/targets/*/*/*.bin # 根据你的目标平台调整路径
 
 name: OpenWrt Builder
 
