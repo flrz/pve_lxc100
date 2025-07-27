@@ -18,9 +18,11 @@
 #echo 'src-git openwrt-passwall-packages https://github.com/xiaorouji/openwrt-passwall-packages' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 #echo 'src-git openclash https://github.com/vernesong/OpenClash' >>feeds.conf.default
+echo "src-git passwall https://github.com/xiaorouji/openwrt-passwall.git;main" >> $FEEDS_CONF
+echo "src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages.git;main" >> $FEEDS_CONF
 #sed -i '1i src-git flrz https://github.com/flrz/passwall_packages' feeds.conf.default
-sed -i '1i src-git diypackages https://github.com/flrz/diypackages' feeds.conf.default
+#sed -i '1i src-git diypackages https://github.com/flrz/diypackages' feeds.conf.default
 #sed -i '1i src-git rzpackages https://github.com/flrz/rzpackages' feeds.conf.default
 #sed -i '1i src-git openwrt-passwall-packages https://github.com/xiaorouji/openwrt-passwall-packages' feeds.conf.default
-sed -i '2i src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
-sed -i '3i src-git openclash https://github.com/vernesong/OpenClash' feeds.conf.default
+#sed -i '2i src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
+#sed -i '3i src-git openclash https://github.com/vernesong/OpenClash' feeds.conf.default
