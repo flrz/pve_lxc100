@@ -14,12 +14,9 @@
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
 # Add a feed source
-# Add PassWall feeds
 echo "src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 echo "src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages' >>feeds.conf.default
-# Add OpenClash feed
 echo "src-git openclash https://github.com/vernesong/OpenClash' >>feeds.conf.default
-
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 #sed -i '1i src-git flrz https://github.com/flrz/passwall_packages' feeds.conf.default
