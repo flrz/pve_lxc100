@@ -12,7 +12,7 @@
 
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.25.5/g' package/base-files/files/bin/config_generate
-https://github.com/ffff3333/packages_updated
+
 # Modify default theme
 #sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 
