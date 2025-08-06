@@ -70,6 +70,7 @@ jobs:
       id: package
       run: |
         cd openwrt
+        sed -i 's/--set=llvm\.download-ci-llvm=true/--set=llvm.download-ci-llvm=false/' feeds/packages/lang/rust/Makefile
         make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
