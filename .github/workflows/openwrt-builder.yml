@@ -120,15 +120,12 @@ jobs:
       id: compile
       run: |
         cd openwrt
-        echo "update golang version"
+        
+        # 更新 golang 1.24 版本
         rm -rf feeds/packages/lang/golang
         git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
-        cp -r temp_resp/lang/golang feeds/packages/lang
-        echo "update rust version"
-        rm -rf feeds/packages/lang/rust
-        cp -r temp_resp/lang/rust feeds/packages/lang
-        rm -rf temp_resp
-        echo "fixed rust host build error"
+
+        # fixed rust host build error
         sed -i 's/--set=llvm\.download-ci-llvm=false/--set=llvm.download-ci-llvm=true/' feeds/packages/lang/rust/Makefile
 
         echo -e "$(nproc) thread compile"
