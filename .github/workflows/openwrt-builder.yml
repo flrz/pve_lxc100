@@ -113,14 +113,15 @@ jobs:
         cd temp_resp
         git checkout 2b99cd7d7637da0f152da378994f699aaf0dd44d
         cd ..
-        # update golang version
+        echo "update golang version"
         rm -rf feeds/packages/lang/golang
         cp -r temp_resp/lang/golang feeds/packages/lang
-        # update rust version
+        echo "update rust version"
         rm -rf feeds/packages/lang/rust
         cp -r temp_resp/lang/rust feeds/packages/lang
         rm -rf temp_resp
-        # fixed rust host build erro
+
+        echo "fixed rust host build error"
         sed -i 's/--set=llvm\.download-ci-llvm=false/--set=llvm.download-ci-llvm=true/' feeds/packages/lang/rust/Makefile
         grep -q -- '--ci false \\' feeds/packages/lang/rust/Makefile || sed -i '/x\.py \\/a \        --ci false \\' feeds/packages/lang/rust/Makefile
 
