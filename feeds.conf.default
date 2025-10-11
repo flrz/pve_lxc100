@@ -1,9 +1,9 @@
 src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages.git;main
 src-git passwall_luci https://github.com/xiaorouji/openwrt-passwall.git;main
-src-git packages https://github.com/Lienol/openwrt-packages.git;24.10
-src-git luci https://github.com/Lienol/openwrt-luci.git;24.10
-src-git routing https://github.com/openwrt/routing.git;openwrt-24.10
-src-git telephony https://github.com/openwrt/telephony.git;openwrt-24.10
+src-git packages https://git.openwrt.org/feed/packages.git^b446c2e9e50cbb8c90c34e2f4599e45e35304e97
+src-git luci https://git.openwrt.org/project/luci.git^395e73daf93907085460aa651f901f6683dd2f9b
+src-git routing https://git.openwrt.org/feed/routing.git^3eb59e9471858c83891979793f1dd29cca156919
+src-git telephony https://git.openwrt.org/feed/telephony.git^2a4541d46199ac96fac214d02c908402831c4dc6
 src-git argon https://github.com/ffff3333/themes.git
 src-git openclash https://github.com/vernesong/OpenClash.git
 #src-git argon https://github.com/jerrykuku/luci-app-argon-config.git
