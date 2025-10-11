@@ -10,7 +10,7 @@
 # See /LICENSE for more information.
 #
 
-name: immortalwrt Builder
+name: Openwrt Builder
 
 on:
   repository_dispatch:
