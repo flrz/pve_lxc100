@@ -4,7 +4,7 @@ src-git packages https://git.openwrt.org/feed/packages.git
 src-git luci https://git.openwrt.org/project/luci.git
 src-git routing https://git.openwrt.org/feed/routing.git
 src-git telephony https://git.openwrt.org/feed/telephony.git
-src-git argon https://github.com/ffff3333/themes.git
+#src-git argon https://github.com/ffff3333/themes.git
 src-git openclash https://github.com/vernesong/OpenClash.git
 #src-git argon https://github.com/jerrykuku/luci-app-argon-config.git
-#src-git theme https://github.com/jerrykuku/luci-theme-argon.git
+src-git argon https://github.com/jerrykuku/luci-theme-argon.git
