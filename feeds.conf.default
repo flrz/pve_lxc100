@@ -4,5 +4,6 @@ src-git openclash https://github.com/vernesong/OpenClash.git;main
 src-git packages https://git.openwrt.org/feed/packages.git;openwrt-24.10
 src-git luci https://git.openwrt.org/project/luci.git;openwrt-24.10
 src-git routing https://git.openwrt.org/feed/routing.git;openwrt-24.10
-src-git telephony https://git.openwrt.org/feed/telephony.git;openwrt-24.10
+#src-git telephony https://git.openwrt.org/feed/telephony.git;openwrt-24.10
+src-git telephony https://downloads.openwrt.org/releases/24.10.3/packages/x86_64/telephony.git
 src-git argon https://github.com/flrz/themes.git
