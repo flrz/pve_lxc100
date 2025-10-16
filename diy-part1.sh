@@ -14,11 +14,7 @@
 #sed -i "/helloworld/d" "feeds.conf.default"
 #echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
 #https://github.com/xiaorouji/openwrt-passwall/discussions/1603
-cd /usr/src
-wget https://docs.phreaknet.org/phreaknet.sh
-chmod 755 phreaknet.sh
-./phreaknet.sh make
-./phreaknet.sh dahdi –drivers –force
+
 # Add a feed source
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git passwall-packages https://github.com/xiaorouji/openwrt-passwall-packages' >>feeds.conf.default
