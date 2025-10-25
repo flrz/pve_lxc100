@@ -1,6 +1,6 @@
 
 
-name: Openwrt Builder
+name: Lienol_Openwrt Builder
 
 on:
   repository_dispatch:
